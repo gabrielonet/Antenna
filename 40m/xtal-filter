@@ -1,0 +1,61 @@
+#include <TFT_HX8357.h> // Hardware-specific library
+#include <EEPROM.h>
+
+#define TFT_GREY 0x5AEB
+#define BACKCOLOR 0x0000
+#define BARCOLOR 0x0620
+#define SCALECOLOR 0xFFFF
+TFT_HX8357 tft = TFT_HX8357(); // Invoke custom library
+
+//  EEPROM.write(0, band);
+
+void setup() {
+    tft.begin();
+    tft.setRotation(1);
+    tft.fillScreen(BACKCOLOR);
+    tft.drawRect(2, 2, 476, 316, TFT_WHITE); // Draw bezel line
+    tft.setTextColor(TFT_WHITE); // Text colour
+    tft.drawCentreString("YO8RXP 7 Mhz  CW Crystal Preselector", 240,10, 4);
+    tft.drawFastHLine(2, 35, 476, TFT_WHITE);
+    tft.drawRect(20, 130, 440, 80, TFT_GREEN); tft.drawFastHLine(20, 160, 440, TFT_WHITE);
+    tft.drawCentreString("ENABLE   |    TX / RX    |  ICOM Ci-V ",240,135,4);    
+    tft.setTextColor(TFT_WHITE);
+    tft.drawCentreString("7.013", 240,40, 8);
+    tft.drawCentreString("Mhz", 400,90, 4);
+
+    tft.drawFastHLine(2, 283, 476, TFT_WHITE);
+
+   tft.fillRoundRect(80, 175, 40, 20, 4, TFT_GREEN);
+   tft.drawRoundRect(80, 175, 40, 20, 4, TFT_WHITE);
+
+   tft.fillRoundRect(220, 175, 40, 20, 4, TFT_GREEN);
+   tft.drawRoundRect(220, 175, 40, 20, 4, TFT_WHITE);
+
+   tft.fillRoundRect(350, 175, 40, 20, 4, TFT_GREY);
+   tft.drawRoundRect(350, 175, 40, 20, 4, TFT_WHITE);
+
+   tft.fillRect(2, 280, 476, 40, TFT_WHITE);
+   tft.setTextColor(TFT_BLACK);
+   tft.drawCentreString("2020 January 18     14:00 UTC", 240,290, 4);
+   tft.setTextColor(TFT_WHITE);
+
+
+}
+
+void loop(){
+   tft.setTextColor(TFT_WHITE);
+   tft.drawString("Searching for Icom Ci-V Connection", 180,220, 2);
+   tft.drawString("Searching for clock module", 180,240, 2);
+   tft.fillRoundRect(350, 175, 40, 20, 4, TFT_RED);
+   tft.drawRoundRect(350, 175, 40, 20, 4, TFT_WHITE);
+delay(300);
+   tft.setTextColor(TFT_RED);
+   tft.drawString("Searching for Icom Ci-V Connection", 180,220, 2);
+   tft.drawString("Searching for clock module", 180,240, 2);
+
+   tft.fillRoundRect(350, 175, 40, 20, 4, TFT_GREY);
+   tft.drawRoundRect(350, 175, 40, 20, 4, TFT_WHITE);
+   delay(100);
+   
+    
+}
